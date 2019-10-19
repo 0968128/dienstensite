@@ -81,12 +81,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Lucas' reserveringssysteem
+                    Lucas' reserveringssite
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel-news.com">Nieuws</a>
-                    <a href="https://blog.laravel.com">Overzicht</a>
+                    <a href="/show/appointments">Overzicht</a>
+                    <a href="/insert/appointment">Afspraak maken</a>
                 </div>
             </div>
         </div>

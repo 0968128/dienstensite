@@ -17,4 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/insert/appointment', function () {
+    return view('appointments.create');
+});
+
+Route::get('/show/appointments', 'AppointmentsController@index');
+
+Route::post('/store/appointment', 'AppointmentsController@create');
+
+Route::post('/', function() {
+    return view('appointments.show');
+});

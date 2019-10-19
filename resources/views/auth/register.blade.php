@@ -58,10 +58,9 @@
 
                             <div class="col-md-6">
                                 <select id="usertype" type="text" class="form-control @error('usertype') is-invalid @enderror" name="usertype" value="{{ old('usertype') }}" required autocomplete="usertype" autofocus>Hoe wil je dit platform gaan gebruiken?
-                                    <option></option>
-                                    <option></option>
-                                    <option></option>
-                                    <option></option>
+                                    <option>Als klant</option>
+                                    <option>Als dienstverlener</option>
+                                    <option>Allebei</option>
                                 </select>
                                 @error('usertype')
                                     <span class="invalid-feedback" role="alert">

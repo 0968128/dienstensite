@@ -18,7 +18,6 @@ class CreateAdvertsTable extends Migration
             $table->string('name');
             $table->text('descr');
             $table->datetime('time');
-            $table->boolean('isactive');
             $table->timestamps('created_at');
             $table->timestamps('updated_at');
         });
@@ -31,6 +30,6 @@ class CreateAdvertsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adverts');
+        Schema::dropIfExists('appointments');
     }
 }

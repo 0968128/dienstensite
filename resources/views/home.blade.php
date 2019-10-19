@@ -14,6 +14,8 @@
                         </div>
                     @endif
                     You are logged in!
+                    <br><a href="/afspraken/mijn">Mijn afspraken</a>
+                    <br><a href="/opentimeslots/mijn">Mijn open timeslots</a>
                 </div>
             </div>
         </div>

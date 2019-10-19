@@ -85,8 +85,10 @@
                 </div>
 
                 <div class="links">
-                    <a href="/show/appointments">Overzicht</a>
-                    <a href="/insert/appointment">Afspraak maken</a>
+                    <a href="/show/appointments">Afsprakenoverzicht</a>
+                    <a href="/show/timeslots">Timeslotsoverzicht</a>
+                    <a href="/create/appointment">Afspraak maken</a>
+                    <a href="/create/timeslot">Timeslot openzetten</a>
                 </div>
             </div>
         </div>

@@ -21,14 +21,22 @@ Route::get('/home', function () {
 
 Auth::routes();
 
-Route::get('/insert/appointment', function () {
-    return view('appointments.create');
+Route::get('/show/appointments', 'AppointmentsController@index');
+
+Route::get('/show/timeslots', 'TimeslotsController@index');
+
+Route::get('/create/appointment', function () {
+    return view ('appointments\create');
 });
 
-Route::get('/show/appointments', 'AppointmentsController@index');
+Route::get('/create/timeslot', function () {
+    return view ('timeslots\create');
+});
+
+// Route::get('/afspraken/mijn', '');
+
+// Route::get('/opentimeslots/mijn', '');
 
 Route::post('/store/appointment', 'AppointmentsController@create');
 
-Route::post('/', function() {
-    return view('appointments.show');
-});
+Route::post('/store/timeslot', 'TimeslotsController@create');

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Timeslot;
 
-class CategoriesController extends Controller
+class TimeslotsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $timeslots = Timeslot::all();
-        return view("timeslots.index", []);
+        return view("timeslots.index", ['timeslots' => $timeslots]);
     }
 
     /**
@@ -24,7 +25,12 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        $timeslot = new Timeslot();
+        
+        $timeslot->date = $request->input('date');
+        $timeslot->time = $request->input('time');
+        $timeslot->save();
+        return view("timeslots.index", []);
     }
 
     /**

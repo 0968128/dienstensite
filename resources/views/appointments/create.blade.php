@@ -1,4 +1,4 @@
-<form method="post" action="/store/ad">
+<form method="post" action="/store/appointment">
 <input name="_token" type="hidden" value="{{ csrf_token() }}">
     <div>
         <label>

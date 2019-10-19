@@ -30,7 +30,6 @@ class AppointmentsController extends Controller
         $appointment->name = $request->input('name');
         $appointment->descr = $request->input('descr');
         $appointment->timeslot = $request->input('timeslot');
-        $appointment->isactive = $request->input('isactive');
         $appointment->save();
         return view("appointments.index", []);
     }

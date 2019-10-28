@@ -8,8 +8,15 @@
             Description: <input type="text" name="descr" id="2"/>
         </label><br>
         <label>
-            Timeslot: <select type="text" name="timeslot" id="1" value="">
-                <option value="producten">Hier moet een foreach loop komen van alle timeslots die een zekere gebruiker heeft opengesteld.</option>
+            Dienstverlener:
+            <select type="text" name="dienstverlener" id="2" value="">
+                <option value="">Hier moet een foreach loop komen van alle gebruikers</option>
+            </select>
+        </label><br>
+        <label>
+            Timeslot:
+            <select type="text" name="timeslot" id="1" value="">
+                <option value="">Hier moet een foreach loop komen van alle timeslots die bovenstaande gebruiker heeft opengesteld.</option>
             </select>
         </label>
     </div>

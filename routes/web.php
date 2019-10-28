@@ -33,6 +33,12 @@ Route::get('/create/timeslot', function () {
     return view ('timeslots\create');
 });
 
+Route::get('/search', function(Request $request) {
+    return App\Order::search($request->search)
+    ->within('')
+    ->get();
+});
+
 // Route::get('/afspraken/mijn', '');
 
 // Route::get('/opentimeslots/mijn', '');

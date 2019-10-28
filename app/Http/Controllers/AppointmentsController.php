@@ -12,9 +12,13 @@ class AppointmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $appointments = Appointment::all();
+        $searchbar = $request->get('searchbar');
+        $filter = $request->get('filter');
+
+        $appointments = Appointment::where('name', 'LIKE', "%{$searchbar}%")->get();
+
         return view("appointments.index", ['appointments' => $appointments]);
     }
 

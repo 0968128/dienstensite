@@ -13,36 +13,21 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// Routes voor basale pagina's
 Route::get('/','PagesController@index');
 Route::get('/about','PagesController@about');
 Route::get('/contact','PagesController@contact');
+Route::get('/profile', 'PagesController@profile');
 
-Route::get('/home', function () {
-    return view ('home');
-});
-
-Auth::routes();
-
+// Routes met de afsprakencontroller
+Route::get('/create/appointment', 'AppointmentsController@create');
 Route::get('/show/appointments', 'AppointmentsController@index');
+Route::post('/store/appointment', 'AppointmentsController@store');
 
+// Routes met de timeslotscontroller
+Route::get('/create/timeslot', 'TimeslotsController@create');
 Route::get('/show/timeslots', 'TimeslotsController@index');
+Route::post('/store/timeslot', 'TimeslotsController@store');
 
-Route::get('/create/appointment', function () {
-    return view ('appointments\create');
-});
-
-Route::get('/create/timeslot', function () {
-    return view ('timeslots\create');
-});
-
-// Route::get('/afspraken/mijn', '');
-
-// Route::get('/opentimeslots/mijn', '');
-
-Route::post('/store/appointment', 'AppointmentsController@create');
-
-Route::post('/store/timeslot', 'TimeslotsController@create');
+// Routes met betrekking tot authorisatie en authenticatie
+Auth::routes();

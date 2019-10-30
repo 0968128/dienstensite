@@ -29,13 +29,7 @@ class AppointmentsController extends Controller
      */
     public function create(Request $request)
     {
-        $appointment = new Appointment();
-
-        $appointment->name = $request->input('name');
-        $appointment->descr = $request->input('descr');
-        $appointment->timeslot = $request->input('timeslot');
-        $appointment->save();
-        return view("appointments.index", []);
+        //
     }
 
     /**
@@ -46,7 +40,13 @@ class AppointmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $appointment = new Appointment();
+
+        $appointment->name = $request->input('name');
+        $appointment->descr = $request->input('descr');
+        $appointment->timeslot = $request->input('timeslot');
+        $appointment->save();
+        return view("appointments.index", []);
     }
 
     /**
@@ -58,7 +58,7 @@ class AppointmentsController extends Controller
     public function show($id)
     {
         Appointment::find('$id');
-        return view("appointments.show", ["model" => $ad]);
+        return view("appointments.show", ["model" => $appointment]);
     }
 
     /**

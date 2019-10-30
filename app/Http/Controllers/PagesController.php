@@ -12,6 +12,10 @@ class PagesController extends Controller
         ]);
     }
 
+    public function profile() {
+        return view ('profile');
+    }
+
     public function contact() {
         return view ('contact');
     }

@@ -68,12 +68,12 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/profile') }}">Profiel</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        Je moet <a href="{{ route('login') }}">inloggen</a> om een afspraak te maken. Heb je nog geen account? Je kunt je ook
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">nu registreren</a>.
                         @endif
                     @endauth
                 </div>
@@ -93,10 +93,6 @@
                         <a href="/show/timeslots">Timeslotsoverzicht</a>
                         <a href="/create/appointment">Afspraak maken</a>
                         <a href="/create/timeslot">Timeslot openzetten</a>
-                    @else
-                        <div>
-                            <br>Je moet inloggen om een afspraak te kunnen maken. Heb je nog geen account? Je kunt je ook registreren.
-                        </div>
                     @endauth
                 @endif
                 </div>

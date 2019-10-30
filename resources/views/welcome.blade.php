@@ -86,6 +86,8 @@
 
                 <div class="links">
                 @if (Route::has('login'))
+                    <a href="/about">Over ons</a>
+                    <a href="/contact">Contact</a>
                     @auth
                         <a href="/show/appointments">Afsprakenoverzicht</a>
                         <a href="/show/timeslots">Timeslotsoverzicht</a>
@@ -93,7 +95,7 @@
                         <a href="/create/timeslot">Timeslot openzetten</a>
                     @else
                         <div>
-                            Je moet inloggen om een afspraak te kunnen maken. Heb je nog geen account? Je kunt je ook registreren.
+                            <br>Je moet inloggen om een afspraak te kunnen maken. Heb je nog geen account? Je kunt je ook registreren.
                         </div>
                     @endauth
                 @endif

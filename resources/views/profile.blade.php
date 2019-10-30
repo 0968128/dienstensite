@@ -10,6 +10,9 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
+                <p id="greet" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    Hi {{ Auth::user()->name }}, you look good today! <span class="caret"></span>
+                </p>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">

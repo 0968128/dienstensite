@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Over ons
+@endsection
+
 @section('content')
-<p>Lorem ipsum dolor sit amet</p>
+    <p>Ik ben ben Lucas, 18 jaar en ik maak een website waar vraag en aanbod van diensten elkaar ontmoeten.</p>
 @endsection

@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Lucas' dienstensite
+                    Lucas' {{$foo}}site
                 </div>
 
                 <div class="links">

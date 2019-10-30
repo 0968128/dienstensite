@@ -17,16 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/','PagesController@index');
+Route::get('/about','PagesController@about');
+Route::get('/contact','PagesController@contact');
+
 Route::get('/home', function () {
     return view ('home');
-});
-
-Route::get('/about', function() {
-    return view ('about');
-});
-
-Route::get('/contact', function() {
-    return view ('contact');
 });
 
 Auth::routes();

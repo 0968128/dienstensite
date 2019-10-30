@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdvertsTable extends Migration
+class CreateAppointmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,9 +17,10 @@ class CreateAdvertsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('descr');
-            $table->datetime('time');
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
+            $table->integer('timeslot_id');
+            $table->integer('dienstverlener_id');
+            $table->integer('klant_id');
+            $table->timestamps();
         });
     }
 

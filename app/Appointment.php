@@ -7,5 +7,4 @@ use Laravel\Scout\Searchable;
 
 class Appointment extends Model {
     protected $table = 'appointments';
-    use Searchable;
 }

@@ -34,10 +34,10 @@
                     <a href="/about">Over ons</a>
                     <a href="/contact">Contact</a>
                     @auth
-                        <a href="/show/appointments">Afsprakenoverzicht</a>
-                        <a href="/show/timeslots">Timeslotsoverzicht</a>
-                        <a href="/create/appointment">Afspraak maken</a>
-                        <a href="/create/timeslot">Timeslot openzetten</a>
+                        <a href="/appointments/index">Afsprakenoverzicht</a>
+                        <a href="/timeslots/index">Timeslotsoverzicht</a>
+                        <a href="/appointments/create">Afspraak maken</a>
+                        <a href="/timeslots/create">Timeslot openzetten</a>
                     @endauth
                 @endif
                 </div>

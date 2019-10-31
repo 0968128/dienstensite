@@ -17,9 +17,9 @@ class CreateAppointmentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('descr');
-            $table->integer('timeslot_id');
-            $table->integer('dienstverlener_id');
-            $table->integer('klant_id');
+            $table->string('timeslot');
+            // $table->integer('dienstverlener_id');
+            // $table->integer('klant_id');
             $table->timestamps();
         });
     }

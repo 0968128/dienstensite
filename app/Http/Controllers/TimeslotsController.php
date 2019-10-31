@@ -25,12 +25,7 @@ class TimeslotsController extends Controller
      */
     public function create()
     {
-        $timeslot = new Timeslot();
-        
-        $timeslot->date = $request->input('date');
-        $timeslot->time = $request->input('time');
-        $timeslot->save();
-        return view("timeslots.index", []);
+        return view("timeslots.create", []);
     }
 
     /**
@@ -41,7 +36,13 @@ class TimeslotsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $timeslot = new Timeslot();
+        $timeslots = Timeslot::all();
+        
+        $timeslot->date = $request->input('date');
+        $timeslot->time = $request->input('time');
+        $timeslot->save();
+        return view("timeslots.index", ['timeslots' => $timeslots]);
     }
 
     /**

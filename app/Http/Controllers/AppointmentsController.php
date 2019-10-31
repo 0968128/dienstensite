@@ -29,7 +29,7 @@ class AppointmentsController extends Controller
      */
     public function create(Request $request)
     {
-        //
+        return view('appointments.create');
     }
 
     /**
@@ -46,7 +46,8 @@ class AppointmentsController extends Controller
         $appointment->descr = $request->input('descr');
         $appointment->timeslot = $request->input('timeslot');
         $appointment->save();
-        return view("appointments.index", []);
+
+        return redirect('/appointments');
     }
 
     /**

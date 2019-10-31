@@ -20,14 +20,19 @@ Route::get('/contact','PagesController@contact');
 Route::get('/profile', 'PagesController@profile');
 
 // Routes met de afsprakencontroller
-Route::get('/create/appointment', 'AppointmentsController@create');
-Route::get('/show/appointments', 'AppointmentsController@index');
-Route::post('/store/appointment', 'AppointmentsController@store');
+Route::resource('/appointments', 'AppointmentsController');
+//Route::get('/appointments', 'AppointmentsController@index');
+//Route::get('/appointments/create', 'AppointmentsController@create');
+//Route::get('/appointments/{appointment}', 'AppointmentsController@show');
+//Route::post('/appointments', 'AppointmentsController@store');
+//Route::get('/appointments/{appointment}/edit', 'AppointmentsController@edit');
+//Route::patch('/appointments/{appointment}', 'AppointmentsController@update');
+//Route::delete('/appointments/{appointment}', 'AppointmentsController@destory');
 
 // Routes met de timeslotscontroller
-Route::get('/create/timeslot', 'TimeslotsController@create');
-Route::get('/show/timeslots', 'TimeslotsController@index');
-Route::post('/store/timeslot', 'TimeslotsController@store');
+Route::get('/timeslots', 'TimeslotsController@index');
+Route::get('/timeslots/create', 'TimeslotsController@create');
+Route::post('/timeslots/store', 'TimeslotsController@store');
 
 // Routes met betrekking tot authorisatie en authenticatie
 Auth::routes();

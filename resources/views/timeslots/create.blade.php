@@ -1,4 +1,4 @@
-<form method="post" action="/store/timeslot">
+<form method="post" action="/timeslots/store">
 <input name="_token" type="hidden" value="{{ csrf_token() }}">
     <div>
         <label>
@@ -18,11 +18,11 @@
                 <option type="time" value="13:00">13:00</option>
                 <option type="time" value="14:00">14:00</option>
                 <option type="time" value="15:00">15:00</option>
-                <option type="time" value="10:00">16:00</option>
-                <option type="time" value="11:00">17:00</option>
-                <option type="time" value="12:00">18:00</option>
-                <option type="time" value="13:00">19:00</option>
-                <option type="time" value="14:00">20:00</option>
+                <option type="time" value="16:00">16:00</option>
+                <option type="time" value="17:00">17:00</option>
+                <option type="time" value="18:00">18:00</option>
+                <option type="time" value="19:00">19:00</option>
+                <option type="time" value="20:00">20:00</option>
             </select>
         </label>
     </div>

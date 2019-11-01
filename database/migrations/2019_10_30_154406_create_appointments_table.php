@@ -18,9 +18,13 @@ class CreateAppointmentsTable extends Migration
             $table->string('name');
             $table->text('descr');
             $table->string('timeslot');
-            // $table->integer('dienstverlener_id');
-            // $table->integer('klant_id');
+            $table->unsignedBigInteger('klant_id');
+            //$table->unsignedInteger('dienstverlener_id');
             $table->timestamps();
+
+            // Foreign keys
+            $table->foreign('klant_id')->references('id')->on('users');
+            //$table->foreign('dienstverlener_id')->references('user_id')->on('timeslots');
         });
     }
 

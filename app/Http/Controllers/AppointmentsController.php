@@ -12,14 +12,25 @@ class AppointmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request)
     {
+        // Zoeken
         $searchbar = $request->get('searchbar');
         $filter = $request->get('filter');
 
-        $appointments = Appointment::where('name', 'LIKE', "%{$searchbar}%")->get();
-
-        return view("appointments.index", ['appointments' => $appointments]);
+        $appointments = Appointment::where(
+            'klant_id', auth()->id())->where(
+            //'dienstverlener_id', auth()->id())->where(
+            'name', 'LIKE', "%{$searchbar}%")
+            ->get();
+        /*@if()
+        
+        @endif*/
+        return view('appointments.index', compact('appointments'));
     }
 
     /**
@@ -38,9 +49,14 @@ class AppointmentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        Appointment::create(request()->all());
+        $attributes = request()->validate([
+            'name' => ['required', 'min:5'],
+            'descr' => ['required', 'min:20'],
+            'timeslot' => 'required'
+        ]);
+        Appointment::create($attributes + ['klant_id' => auth()->id()]);
         return redirect('/appointments');
     }
 
@@ -75,7 +91,7 @@ class AppointmentsController extends Controller
      */
     public function update(Appointment $appointment)
     {
-        $project->update(request(['name', 'description', 'timeslot']));
+        $appointment->update(request(['name', 'descr', 'timeslot']));
         return redirect('/appointments');
     }
 

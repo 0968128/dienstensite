@@ -22,14 +22,20 @@ class AppointmentsController extends Controller
         $searchbar = $request->get('searchbar');
         $filter = $request->get('filter');
 
+        /*@if($filter = 2)
         $appointments = Appointment::where(
-            'klant_id', auth()->id())->where(
-            //'dienstverlener_id', auth()->id())->where(
-            'name', 'LIKE', "%{$searchbar}%")
-            ->get();
-        /*@if()
-        
-        @endif*/
+            'name', 'LIKE', "%{$searchbar}%")->where(
+            'klant_id', auth()->id())->get();
+        @elseif($filter = 3)
+        $appointments = Appointment::where(
+            'name', 'LIKE', "%{$searchbar}%")->where(
+            'dienstverlener_id', auth()->id())->get();
+        @else($filter = 1)*/
+        $appointments = Appointment::where(
+            'name', 'LIKE', "%{$searchbar}%")->where(
+            'klant_id', auth()->id())->orWhere(
+            'dienstverlener_id', auth()->id())->get();
+        //@endif
         return view('appointments.index', compact('appointments'));
     }
 

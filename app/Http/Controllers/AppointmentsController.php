@@ -40,13 +40,7 @@ class AppointmentsController extends Controller
      */
     public function store(Request $request)
     {
-        $appointment = new Appointment();
-
-        $appointment->name = $request->input('name');
-        $appointment->descr = $request->input('descr');
-        $appointment->timeslot = $request->input('timeslot');
-        $appointment->save();
-
+        Appointment::create(request()->all());
         return redirect('/appointments');
     }
 
@@ -56,10 +50,9 @@ class AppointmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Appointment $appointment)
     {
-        Appointment::find('$id');
-        return view("appointments.show", ["model" => $appointment]);
+        return view("appointments.show", compact('appointment'));
     }
 
     /**
@@ -68,9 +61,9 @@ class AppointmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Appointment $appointment)
     {
-        //
+        return view('appointments.edit', compact('appointment'));
     }
 
     /**
@@ -80,9 +73,10 @@ class AppointmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Appointment $appointment)
     {
-        //
+        $project->update(request(['name', 'description', 'timeslot']));
+        return redirect('/appointments');
     }
 
     /**
@@ -91,8 +85,9 @@ class AppointmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Appointment $appointment)
     {
-        //
+        $appointment->delete();
+        return redirect('/appointments');
     }
 }

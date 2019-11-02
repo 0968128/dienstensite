@@ -86,7 +86,7 @@ class AppointmentsController extends Controller
      */
     public function edit(Appointment $appointment)
     {
-        if(auth()->id() == $appointment->klant_id)
+        if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id)
             return view('appointments.edit', compact('appointment'));
         else return redirect('/appointments');
     }
@@ -100,7 +100,7 @@ class AppointmentsController extends Controller
      */
     public function update(Appointment $appointment)
     {
-        if(auth()->id() == $appointment->klant_id) {
+        if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id) {
             $appointment->update(request(['name', 'descr', 'timeslot']));
             return view("appointments.show", compact('appointment'));
         } else {

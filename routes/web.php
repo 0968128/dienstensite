@@ -36,3 +36,4 @@ Route::post('/timeslots/store', 'TimeslotsController@store');
 
 // Routes met betrekking tot authorisatie en authenticatie
 Auth::routes();
+Route::get('/moderators', 'PagesController@moderators');

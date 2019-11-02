@@ -38,6 +38,7 @@
                         <a href="/timeslots">Timeslotsoverzicht</a>
                         <a href="/appointments/create">Afspraak maken</a>
                         <a href="/timeslots/create">Timeslot openzetten</a>
+                        <a href="/moderators">Moderators</a>
                     @endauth
                 @endif
                 </div>

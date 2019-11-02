@@ -36,4 +36,10 @@ Route::post('/timeslots/store', 'TimeslotsController@store');
 
 // Routes met betrekking tot authorisatie en authenticatie
 Auth::routes();
-Route::get('/moderators', 'PagesController@moderators');
+
+// Met betrekking op gebruikers
+Route::get('/users', 'UsersController@index');
+Route::get('/users/{user}/edit', 'UsersController@edit');
+Route::patch('/users', 'UsersController@update');
+Route::patch('/users/{user}', 'UsersController@update');
+Route::delete('/users/{user}', 'UsersController@destroy');

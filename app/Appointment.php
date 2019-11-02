@@ -10,7 +10,8 @@ class Appointment extends Model {
         'name',
         'descr',
         'timeslot',
-        'klant_id'
+        'klant_id',
+        'dienstverlener_id'
     ];
     public function user() {
         return $this->belongsTo(User::class);

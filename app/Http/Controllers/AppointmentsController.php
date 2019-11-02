@@ -21,21 +21,20 @@ class AppointmentsController extends Controller
         // Zoeken
         $searchbar = $request->get('searchbar');
         $filter = $request->get('filter');
-
-        /*@if($filter = 2)
-        $appointments = Appointment::where(
-            'name', 'LIKE', "%{$searchbar}%")->where(
-            'klant_id', auth()->id())->get();
-        @elseif($filter = 3)
-        $appointments = Appointment::where(
-            'name', 'LIKE', "%{$searchbar}%")->where(
-            'dienstverlener_id', auth()->id())->get();
-        @else($filter = 1)*/
         $appointments = Appointment::where(
             'name', 'LIKE', "%{$searchbar}%")->where(
             'klant_id', auth()->id())->orWhere(
+            'dienstverlener_id', auth()->id()
+        )->get();
+
+        if($filter == 2)
+        $appointments = Appointment::where(
+            'name', 'LIKE', "%{$searchbar}%")->where(
+            'klant_id', auth()->id())->get();
+        elseif($filter == 3)
+        $appointments = Appointment::where(
+            'name', 'LIKE', "%{$searchbar}%")->where(
             'dienstverlener_id', auth()->id())->get();
-        //@endif
         return view('appointments.index', compact('appointments'));
     }
 
@@ -60,9 +59,9 @@ class AppointmentsController extends Controller
         $attributes = request()->validate([
             'name' => ['required', 'min:5'],
             'descr' => ['required', 'min:20'],
-            'timeslot' => 'required'
+            'timeslot' => 'required',
         ]);
-        Appointment::create($attributes + ['klant_id' => auth()->id()]);
+        Appointment::create($attributes + ['klant_id' => auth()->id(), 'dienstverlener_id' => auth()->id() + 1]);
         return redirect('/appointments');
     }
 

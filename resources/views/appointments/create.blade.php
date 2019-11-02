@@ -10,8 +10,8 @@
         </label><br>
         <label>
             Dienstverlener:
-            <select type="text" name="dienstverlener" value="" required>
-                <option value="1">Hier moet een foreach loop komen van alle gebruikers</option>
+            <select type="text" name="dienstverlener" value="{{ old('dienstverlener') }}" required>
+                <option value="3">Hier moet een foreach loop komen van alle gebruikers</option>
             </select>
         </label><br>
         <label>

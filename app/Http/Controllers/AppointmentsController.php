@@ -73,7 +73,9 @@ class AppointmentsController extends Controller
      */
     public function show(Appointment $appointment)
     {
-        return view("appointments.show", compact('appointment'));
+        if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id)
+            return view("appointments.show", compact('appointment'));
+        else return redirect('/appointments');
     }
 
     /**
@@ -84,7 +86,9 @@ class AppointmentsController extends Controller
      */
     public function edit(Appointment $appointment)
     {
-        return view('appointments.edit', compact('appointment'));
+        if(auth()->id() == $appointment->klant_id)
+            return view('appointments.edit', compact('appointment'));
+        else return redirect('/appointments');
     }
 
     /**
@@ -96,8 +100,12 @@ class AppointmentsController extends Controller
      */
     public function update(Appointment $appointment)
     {
-        $appointment->update(request(['name', 'descr', 'timeslot']));
-        return redirect('/appointments');
+        if(auth()->id() == $appointment->klant_id) {
+            $appointment->update(request(['name', 'descr', 'timeslot']));
+            return view("appointments.show", compact('appointment'));
+        } else {
+            return redirect('/appointments');
+        }
     }
 
     /**
@@ -108,7 +116,9 @@ class AppointmentsController extends Controller
      */
     public function destroy(Appointment $appointment)
     {
-        $appointment->delete();
+        if(auth()->id() == $appointment->klant_id) {
+            $appointment->delete();
+        }
         return redirect('/appointments');
     }
 }

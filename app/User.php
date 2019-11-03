@@ -44,4 +44,8 @@ class User extends Authenticatable
     public function timeslots() {
         return $this->hasMany(Timeslot::class);
     }
+
+    public function roles() {
+        return $this->belongsToMany('App\Role');
+    }
 }

@@ -11,7 +11,7 @@
         <label>
             Dienstverlener:
             <select type="text" name="dienstverlener" value="{{ old('dienstverlener') }}" required>
-                @foreach($users as $user)<option value="{{ $user->id() }}">{{ $user }}</option>@endforeach
+                <option value="5"> Hier moet de foreach loop staan die alle gebruikers langsgaat. </option>
             </select>
         </label><br>
     </div>

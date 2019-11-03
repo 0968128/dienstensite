@@ -4,7 +4,7 @@
     <h1>Edit project</h1>
     <form method="post" action="/appointments/{{ $appointment->id }}">
         @method('PATCH')
-        @csrf
+        {{ @csrf_field() }}
         <div class="field">
             <label>
                 Name: <input type="text" name="name" value="{{ $appointment->name }}" required>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Appointment;
+use App\User;
 
 class AppointmentsController extends Controller
 {
@@ -43,9 +44,9 @@ class AppointmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(User $user)
     {
-        return view('appointments.create');
+        return view('appointments.create', compact('user'));
     }
 
     /**

@@ -5,14 +5,24 @@
     <p>
         <ul>
             @foreach($users as $user)
-                <form method="post" action="/users">
-                    @method('patch')
-                    @csrf
-                    <label for="moderator">
-                        <input type="submit" name="moderator">
-                        {{ $user->name }}
-                    </label>
-                </form>
+            <br><div>{{ $user->name }}</div>
+                <label for="moderator">
+                    @if($user->id != Auth::user()->id)
+                        @if($user->hasRole('moderator'))
+                            <form method="post" action="/moderators">
+                                @method('patch')
+                                @csrf
+                                <input type="submit" name="moderator" value="Degradeer">
+                            </form>
+                        @else
+                            <form method="post" action="/moderators">
+                                @method('patch')
+                                @csrf
+                                <input type="submit" name="moderator" value="Promoveer">
+                            </form>
+                        @endif
+                    @endif
+                </label>
             @endforeach
         </ul>
     </p>

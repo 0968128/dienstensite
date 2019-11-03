@@ -37,7 +37,9 @@ Route::post('/timeslots/store', 'TimeslotsController@store');
 // Routes met betrekking tot authorisatie en authenticatie
 Auth::routes();
 Route::group(['middleware' => ['moderator']], function() {
-    Route::get('/moderators', 'ModeratorsController@moderatorDemo')->name('moderator');
+    Route::get('/moderators', 'ModeratorsController@index')->name('moderator');
+    Route::patch('/moderators', 'ModeratorsController@promote')->name('moderator');
+    Route::patch('/moderators', 'ModeratorsController@religate')->name('moderator');
 });
 
 // Met betrekking op gebruikers

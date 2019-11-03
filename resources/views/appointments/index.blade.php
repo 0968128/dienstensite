@@ -11,12 +11,18 @@
         </select>
         <input type="submit" name="submit" value="zoeken">
     </form>
+    Gecheckte afpsraken staan vast
     <ul>
         @foreach ($appointments as $appointment)
             <li>
-                <a href="/appointments/{{ $appointment->id }}">
-                    {{ $appointment->name }}
-                </a>
+                <form method="post" action="/appointments">
+                    @method('PATCH')
+                    @csrf
+                    <label class="checkbox" for="confirmed">
+                        <input type="checkbox" name="confirmed" onChange="this.form.submit()" {{$appointment->confirmed ? 'checked' : ''}}>
+                        <a href="/appointments/{{ $appointment->id }}">{{ $appointment->name }}</a>
+                    </label>
+                </form>
             </li>
         @endforeach
     </ul>

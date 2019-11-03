@@ -23,7 +23,7 @@
                 <select type="text" name="timeslot" value="2" required>
                     <option value="2">Hier moet een foreach loop komen van alle timeslots die bovenstaande gebruiker heeft opengesteld.</option>
                 </select>
-            </label>
+            </label><br>
         </div>
         <button type="submit">Send</button>
     </form>

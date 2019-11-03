@@ -20,6 +20,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('timeslot');
             $table->unsignedBigInteger('klant_id');
             $table->unsignedBigInteger('dienstverlener_id');
+            $table->boolean('confirmed')->default(false);
             $table->timestamps();
 
             // Foreign keys

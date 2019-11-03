@@ -21,6 +21,7 @@ Route::get('/profile', 'PagesController@profile');
 
 // Routes met de afsprakencontroller
 Route::resource('/appointments', 'AppointmentsController');
+Route::patch('/appointments', 'AppointmentsController@bevestig');
 
 // Routes met de timeslotscontroller
 Route::get('/timeslots', 'TimeslotsController@index');

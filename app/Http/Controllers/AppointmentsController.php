@@ -121,4 +121,12 @@ class AppointmentsController extends Controller
         }
         return redirect('/appointments');
     }
+
+    public function bevestig(Appointment $appointment) {
+        $appointment->update([
+            'confirmed' => request()->has('confirmed')
+        ]);
+        //dd("Hi!");
+        return back();
+    }
 }

@@ -30,7 +30,6 @@
                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -48,6 +47,7 @@
                         </div>
                     @endif
                     You are logged in!
+                    <br><a href="/users/{{ Auth::user()->id }}/edit">Bewerk uzelf</a>
                     <br><a href="/appointments">Mijn afspraken</a>
                     <br><a href="/timeslots">Mijn open timeslots</a>
                 </div>

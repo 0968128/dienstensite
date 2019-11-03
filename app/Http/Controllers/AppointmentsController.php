@@ -60,6 +60,7 @@ class AppointmentsController extends Controller
             'name' => ['required', 'min:5'],
             'descr' => ['required', 'min:20'],
             'timeslot' => 'required',
+            'confirmed' => false
         ]);
         Appointment::create($attributes + ['klant_id' => auth()->id(), 'dienstverlener_id' => auth()->id() + 1]);
         return redirect('/appointments');

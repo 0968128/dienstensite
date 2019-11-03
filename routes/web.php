@@ -13,32 +13,28 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Routes voor basale pagina's
+Route::get('/','PagesController@index');
+Route::get('/about','PagesController@about');
+Route::get('/contact','PagesController@contact');
+Route::get('/profile', 'PagesController@profile');
 
-Route::get('/home', function () {
-    return view ('home');
-});
+// Routes met de afsprakencontroller
+Route::resource('/appointments', 'AppointmentsController');
 
+// Routes met de timeslotscontroller
+Route::get('/timeslots', 'TimeslotsController@index');
+Route::get('/timeslots/create', 'TimeslotsController@create');
+Route::post('/timeslots/store', 'TimeslotsController@store');
+
+// Routes met betrekking tot authorisatie en authenticatie
 Auth::routes();
-
-Route::get('/show/appointments', 'AppointmentsController@index');
-
-Route::get('/show/timeslots', 'TimeslotsController@index');
-
-Route::get('/create/appointment', function () {
-    return view ('appointments\create');
+Route::group(['middleware' => ['moderator']], function() {
+    Route::get('/users', 'UsersController@index')->name('moderator');
 });
 
-Route::get('/create/timeslot', function () {
-    return view ('timeslots\create');
-});
-
-// Route::get('/afspraken/mijn', '');
-
-// Route::get('/opentimeslots/mijn', '');
-
-Route::post('/store/appointment', 'AppointmentsController@create');
-
-Route::post('/store/timeslot', 'TimeslotsController@create');
+// Met betrekking op gebruikers
+Route::get('/users', 'UsersController@index');
+Route::get('/users/{user}/edit', 'UsersController@edit');
+Route::patch('/users', 'UsersController@update');
+Route::delete('/users/{user}', 'UsersController@destroy');

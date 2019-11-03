@@ -3,9 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
 
 class Appointment extends Model {
     protected $table = 'appointments';
-    use Searchable;
+    protected $fillable = [
+        'name',
+        'descr',
+        'timeslot',
+        'klant_id',
+        'dienstverlener_id'
+    ];
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }

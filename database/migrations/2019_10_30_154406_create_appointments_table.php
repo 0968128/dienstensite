@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Appointments extends Migration
+class CreateAppointmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,11 +17,14 @@ class Appointments extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('descr');
-            $table->datetime('timeslot');
-            $table->bigIncrements('dienstverlener_id');
-            $table->bigIncrements('klant_id');
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
+            $table->string('timeslot');
+            $table->unsignedBigInteger('klant_id');
+            $table->unsignedBigInteger('dienstverlener_id');
+            $table->timestamps();
+
+            // Foreign keys
+            $table->foreign('klant_id')->references('id')->on('users');
+            //$table->foreign('dienstverlener_id')->references('user_id')->on('timeslots');
         });
     }
 
@@ -32,6 +35,6 @@ class Appointments extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('appointments');
     }
 }

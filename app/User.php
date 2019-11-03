@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
@@ -17,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password'
     ];
 
     /**
@@ -37,4 +36,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function appointments() {
+        return $this->hasMany(Appointment::class);
+    }
+
+    public function timeslots() {
+        return $this->hasMany(Timeslot::class);
+    }
+
+    public function roles() {
+        return $this->belongsToMany('App\Role');
+    }
+
+    public function hasRole($role) {
+        $roles = $this->roles()->where('name', $role)->count();
+        if ($roles == 1)
+            return true;
+        else return false;
+    }
 }

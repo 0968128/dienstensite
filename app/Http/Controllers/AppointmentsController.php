@@ -12,14 +12,30 @@ class AppointmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request)
     {
+        // Zoeken
         $searchbar = $request->get('searchbar');
         $filter = $request->get('filter');
+        $appointments = Appointment::where(
+            'name', 'LIKE', "%{$searchbar}%")->where(
+            'klant_id', auth()->id())->orWhere(
+            'dienstverlener_id', auth()->id()
+        )->get();
 
-        $appointments = Appointment::where('name', 'LIKE', "%{$searchbar}%")->get();
-
-        return view("appointments.index", ['appointments' => $appointments]);
+        if($filter == 2)
+        $appointments = Appointment::where(
+            'name', 'LIKE', "%{$searchbar}%")->where(
+            'klant_id', auth()->id())->get();
+        elseif($filter == 3)
+        $appointments = Appointment::where(
+            'name', 'LIKE', "%{$searchbar}%")->where(
+            'dienstverlener_id', auth()->id())->get();
+        return view('appointments.index', compact('appointments'));
     }
 
     /**
@@ -29,13 +45,7 @@ class AppointmentsController extends Controller
      */
     public function create(Request $request)
     {
-        $appointment = new Appointment();
-
-        $appointment->name = $request->input('name');
-        $appointment->descr = $request->input('descr');
-        $appointment->timeslot = $request->input('timeslot');
-        $appointment->save();
-        return view("appointments.index", []);
+        return view('appointments.create');
     }
 
     /**
@@ -44,9 +54,15 @@ class AppointmentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $attributes = request()->validate([
+            'name' => ['required', 'min:5'],
+            'descr' => ['required', 'min:20'],
+            'timeslot' => 'required',
+        ]);
+        Appointment::create($attributes + ['klant_id' => auth()->id(), 'dienstverlener_id' => auth()->id() + 1]);
+        return redirect('/appointments');
     }
 
     /**
@@ -55,10 +71,11 @@ class AppointmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Appointment $appointment)
     {
-        Appointment::find('$id');
-        return view("appointments.show", ["model" => $ad]);
+        if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id)
+            return view("appointments.show", compact('appointment'));
+        else return redirect('/appointments');
     }
 
     /**
@@ -67,9 +84,11 @@ class AppointmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Appointment $appointment)
     {
-        //
+        if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id)
+            return view('appointments.edit', compact('appointment'));
+        else return redirect('/appointments');
     }
 
     /**
@@ -79,9 +98,14 @@ class AppointmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Appointment $appointment)
     {
-        //
+        if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id) {
+            $appointment->update(request(['name', 'descr', 'timeslot']));
+            return view("appointments.show", compact('appointment'));
+        } else {
+            return redirect('/appointments');
+        }
     }
 
     /**
@@ -90,8 +114,11 @@ class AppointmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Appointment $appointment)
     {
-        //
+        if(auth()->id() == $appointment->klant_id) {
+            $appointment->delete();
+        }
+        return redirect('/appointments');
     }
 }

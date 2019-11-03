@@ -7,10 +7,9 @@ use App\User;
 
 class UsersController extends Controller
 {
-    public function index()
-    {
-        $users = User::get();
-        return view('moderators', compact('users'));
+    public function index() {
+        $users = User::with('roles')->get();
+        return view('users', compact('users'));
     }
 
     public function show(User $user)
@@ -45,10 +44,7 @@ class UsersController extends Controller
         if(auth()->id() == $user->id) {
             $user->update(request(['name', 'email']));
             return view("users.show", compact('user'));
-        } /*elseif (auth()->moderator() == 'yes') {
-            $user->update(request(['moderator']));
-            return view("users.show", compact('user'));
-        } */else {
+        } else {
             return redirect('/users');
         }
     }

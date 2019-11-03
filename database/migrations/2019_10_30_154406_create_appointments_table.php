@@ -17,7 +17,6 @@ class CreateAppointmentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('descr');
-            $table->string('timeslot');
             $table->unsignedBigInteger('klant_id');
             $table->unsignedBigInteger('dienstverlener_id');
             $table->boolean('confirmed')->default(false);

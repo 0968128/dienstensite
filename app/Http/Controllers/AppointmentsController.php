@@ -59,7 +59,6 @@ class AppointmentsController extends Controller
         $attributes = request()->validate([
             'name' => ['required', 'min:5'],
             'descr' => ['required', 'min:20'],
-            'timeslot' => 'required',
             'confirmed' => false
         ]);
         Appointment::create($attributes + ['klant_id' => auth()->id(), 'dienstverlener_id' => auth()->id() + 1]);
@@ -102,7 +101,7 @@ class AppointmentsController extends Controller
     public function update(Appointment $appointment)
     {
         if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id) {
-            $appointment->update(request(['name', 'descr', 'timeslot']));
+            $appointment->update(request(['name', 'descr']));
             return view("appointments.show", compact('appointment'));
         } else {
             return redirect('/appointments');

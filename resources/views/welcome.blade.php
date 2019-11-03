@@ -35,9 +35,7 @@
                     <a href="/contact">Contact</a>
                     @auth
                         <a href="/appointments">Afsprakenoverzicht</a>
-                        <a href="/timeslots">Timeslotsoverzicht</a>
                         <a href="/appointments/create">Afspraak maken</a>
-                        <a href="/timeslots/create">Timeslot openzetten</a>
                         <a href="/users">Gebruikers</a>
                     @endauth
                 @endif

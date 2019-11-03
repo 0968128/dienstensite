@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Appointment;
+use App\User;
 
 class AppointmentsController extends Controller
 {
@@ -43,9 +44,9 @@ class AppointmentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(User $user)
     {
-        return view('appointments.create');
+        return view('appointments.create', compact('user'));
     }
 
     /**
@@ -59,7 +60,7 @@ class AppointmentsController extends Controller
         $attributes = request()->validate([
             'name' => ['required', 'min:5'],
             'descr' => ['required', 'min:20'],
-            'timeslot' => 'required',
+            'confirmed' => false
         ]);
         Appointment::create($attributes + ['klant_id' => auth()->id(), 'dienstverlener_id' => auth()->id() + 1]);
         return redirect('/appointments');
@@ -101,7 +102,7 @@ class AppointmentsController extends Controller
     public function update(Appointment $appointment)
     {
         if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id) {
-            $appointment->update(request(['name', 'descr', 'timeslot']));
+            $appointment->update(request(['name', 'descr']));
             return view("appointments.show", compact('appointment'));
         } else {
             return redirect('/appointments');
@@ -120,5 +121,13 @@ class AppointmentsController extends Controller
             $appointment->delete();
         }
         return redirect('/appointments');
+    }
+
+    public function bevestig(Appointment $appointment) {
+        $appointment->update([
+            'confirmed' => request()->has('confirmed')
+        ]);
+        //dd("Hi!");
+        return back();
     }
 }

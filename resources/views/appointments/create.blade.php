@@ -11,15 +11,9 @@
         <label>
             Dienstverlener:
             <select type="text" name="dienstverlener" value="{{ old('dienstverlener') }}" required>
-                <option value="3">Hier moet een foreach loop komen van alle gebruikers</option>
+                @foreach($users as $user)<option value="{{ $user->id() }}">{{ $user }}</option>@endforeach
             </select>
         </label><br>
-        <label>
-            Timeslot:
-            <select type="text" name="timeslot" value="{{ old('timeslot') }}" required>
-                <option value="2">Hier moet een foreach loop komen van alle timeslots die bovenstaande gebruiker heeft opengesteld.</option>
-            </select>
-        </label>
     </div>
     <button type="submit">Send</button>
     @if($errors->any())

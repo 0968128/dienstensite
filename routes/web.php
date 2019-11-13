@@ -35,7 +35,6 @@ Route::group(['middleware' => ['moderator']], function() {
 });
 
 // Met betrekking op gebruikers
-Route::get('/users', 'UsersController@index');
 Route::get('/users/{user}/edit', 'UsersController@edit');
 Route::patch('/users/{user}', 'UsersController@update');
 Route::delete('/users/{user}', 'UsersController@destroy');

@@ -109,13 +109,10 @@ class AppointmentsController extends Controller
         }
     }
 
-<<<<<<< Updated upstream
-=======
     public function confirm(Appointment $appointment) {
         return redirect('/appointments');
     }
 
->>>>>>> Stashed changes
     /**
      * Remove the specified resource from storage.
      *
@@ -128,13 +125,5 @@ class AppointmentsController extends Controller
             $appointment->delete();
         }
         return redirect('/appointments');
-    }
-
-    public function bevestig(Appointment $appointment) {
-        $appointment->update([
-            'confirmed' => request()->has('confirmed')
-        ]);
-        //dd("Hi!");
-        return back();
     }
 }

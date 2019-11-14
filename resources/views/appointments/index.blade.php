@@ -15,7 +15,7 @@
     <ul>
         @foreach ($appointments as $appointment)
             <li>
-                <form method="post" action="/appointments">
+                <form method="post" action="/confirm">
                     @method('PATCH')
                     @csrf
                     <label class="checkbox" for="confirmed">

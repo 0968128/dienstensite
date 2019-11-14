@@ -19,7 +19,7 @@ class AppointmentsController extends Controller
     
     public function index(Request $request)
     {
-        // Zoeken
+        // Zoeken en filteren
         $searchbar = $request->get('searchbar');
         $filter = $request->get('filter');
         $appointments = Appointment::where(
@@ -87,9 +87,11 @@ class AppointmentsController extends Controller
      */
     public function edit(Appointment $appointment)
     {
-        if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id)
+        if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id) {
             return view('appointments.edit', compact('appointment'));
-        else return redirect('/appointments');
+        } else {
+            return redirect('/appointments');
+        }
     }
 
     /**
@@ -109,6 +111,13 @@ class AppointmentsController extends Controller
         }
     }
 
+    public function confirm(Appointment $appointment) {
+        $appointment->update([
+            'confirmed' => request()->has('confirmed')
+        ]);
+        return redirect('/appointments');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -121,13 +130,5 @@ class AppointmentsController extends Controller
             $appointment->delete();
         }
         return redirect('/appointments');
-    }
-
-    public function bevestig(Appointment $appointment) {
-        $appointment->update([
-            'confirmed' => request()->has('confirmed')
-        ]);
-        //dd("Hi!");
-        return back();
     }
 }

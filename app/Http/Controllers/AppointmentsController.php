@@ -109,6 +109,13 @@ class AppointmentsController extends Controller
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    public function confirm(Appointment $appointment) {
+        return redirect('/appointments');
+    }
+
+>>>>>>> Stashed changes
     /**
      * Remove the specified resource from storage.
      *

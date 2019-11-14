@@ -19,7 +19,7 @@
                     @method('PATCH')
                     @csrf
                     <label class="checkbox" for="confirmed">
-                        <input type="checkbox" name="confirmed" onChange="this.form.submit()" {{$appointment->confirmed ? 'checked' : ''}}>
+                        <input type="checkbox" name="confirmed" onChange="this.form.submit()">
                         <a href="/appointments/{{ $appointment->id }}">{{ $appointment->name }}</a>
                     </label>
                 </form>

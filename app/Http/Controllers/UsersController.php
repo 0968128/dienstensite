@@ -16,7 +16,7 @@ class UsersController extends Controller
     {
         if(auth()->id() == $user->id)
             return view("users.show", compact('user'));
-        else return redirect('/users');
+        else return redirect('/');
     }
 
     /**
@@ -29,7 +29,7 @@ class UsersController extends Controller
     {
         if(auth()->id() == $user->id)
             return view('users.edit', compact('user'));
-        else return redirect('/users');
+        else return redirect('/');
     }
 
     /**
@@ -45,7 +45,7 @@ class UsersController extends Controller
             $user->update(request(['name', 'email']));
             return view("users.show", compact('user'));
         } else {
-            return redirect('/users');
+            return redirect('/');
         }
     }
 

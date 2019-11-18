@@ -76,7 +76,7 @@ class AppointmentsController extends Controller
     {
         if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id)
             return view("appointments.show", compact('appointment'));
-        else return redirect('/appointments');
+        else return redirect('/geentoegang');
     }
 
     /**
@@ -89,7 +89,7 @@ class AppointmentsController extends Controller
     {
         if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id)
             return view('appointments.edit', compact('appointment'));
-        else return redirect('/appointments');
+        else return redirect('/geentoegang');
     }
 
     /**
@@ -105,7 +105,7 @@ class AppointmentsController extends Controller
             $appointment->update(request(['name', 'descr']));
             return view("appointments.show", compact('appointment'));
         } else {
-            return redirect('/appointments');
+            return redirect('/geentoegang');
         }
     }
 
@@ -113,7 +113,7 @@ class AppointmentsController extends Controller
         if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id) {
             return redirect('/appointments');
         } else {
-            return redirect('/');
+            return redirect('/geentoegang');
         }
     }
 

@@ -110,11 +110,11 @@ class AppointmentsController extends Controller
     }
 
     public function confirm(Appointment $appointment) {
-        if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id) {
-            return redirect('/appointments');
-        } else {
-            return redirect('/geentoegang');
-        }
+        $appointment->update([
+            'confirmed' => request()->has('confirmed')
+        ]);
+
+        return back();
     }
 
     /**

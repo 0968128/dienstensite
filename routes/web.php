@@ -21,7 +21,7 @@ Route::get('/profile', 'PagesController@profile');
 
 // Routes met de afsprakencontroller
 Route::resource('/appointments', 'AppointmentsController');
-Route::patch('/confirm', 'AppointmentsController@confirm');
+Route::patch('/appointments/{appointment}', 'AppointmentsController@confirm');
 
 // Routes met betrekking tot authorisatie en authenticatie
 Auth::routes();

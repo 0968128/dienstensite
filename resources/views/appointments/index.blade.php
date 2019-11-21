@@ -15,11 +15,11 @@
     <ul>
         @foreach ($appointments as $appointment)
             <div>
-                <form method="POST" action="/confirm">
+                <form method="POST" action="/appointments/{{ $appointment->id }}">
                     @method('PATCH')
                     @csrf
                     <label class="checkbox" for="confirmed">
-                        <input type="checkbox" name="confirmed" onChange="this.form.submit()">
+                        <input type="checkbox" name="confirmed" onChange="this.form.submit()" {{ $appointment->confirmed ? 'checked' : ''}}>
                         <a href="/appointments/{{ $appointment->id }}">{{ $appointment->name }}</a>
                     </label>
                 </form>

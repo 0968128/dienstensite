@@ -14,8 +14,8 @@
     Gecheckte afpsraken staan vast
     <ul>
         @foreach ($appointments as $appointment)
-            <li>
-                <form method="post" action="/confirm">
+            <div>
+                <form method="POST" action="/confirm">
                     @method('PATCH')
                     @csrf
                     <label class="checkbox" for="confirmed">
@@ -23,7 +23,7 @@
                         <a href="/appointments/{{ $appointment->id }}">{{ $appointment->name }}</a>
                     </label>
                 </form>
-            </li>
+            </div>
         @endforeach
     </ul>
 @endsection

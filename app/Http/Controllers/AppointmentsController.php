@@ -120,13 +120,6 @@ class AppointmentsController extends Controller
         }
     }
 
-    public function confirm(Appointment $appointment) {
-        $appointment->update([
-            'confirmed' => request()->has('confirmed')
-        ]);
-        return redirect('/appointments');
-    }
-
     /**
      * Remove the specified resource from storage.
      *

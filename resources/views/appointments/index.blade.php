@@ -15,7 +15,7 @@
     <ul>
         @foreach ($appointments as $appointment)
             <div>
-                <form method="POST" action="/appointments/{{ $appointment->id }}">
+                <form method="POST" action="/appointment/{{ $appointment->id }}">
                     @method('PATCH')
                     @csrf
                     <label class="checkbox" for="confirmed">

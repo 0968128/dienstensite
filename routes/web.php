@@ -21,13 +21,14 @@ Route::get('/profile', 'PagesController@profile');
 
 // Routes met de afsprakencontroller
 Route::resource('/appointments', 'AppointmentsController');
-Route::patch('/appointments/{appointment}', 'AppointmentsController@confirm');
+Route::patch('/appointment/{appointment}', 'AppointmentsController@confirm');
 
 // Routes met betrekking tot authorisatie en authenticatie
 Auth::routes();
 Route::group(['middleware' => ['moderator']], function() {
     Route::get('/users', 'UsersController@index')->name('moderator');
 });
+Route::get('/geentoegang', 'PagesController@geentoegang');
 
 // Met betrekking op gebruikers
 Route::get('/users/{user}/edit', 'UsersController@edit');

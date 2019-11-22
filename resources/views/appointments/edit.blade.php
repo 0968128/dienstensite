@@ -13,11 +13,11 @@
                 Description: <textarea name="descr" required>{{ $appointment->descr }}</textarea>
             </label><br>
         </div>
-        <button type="submit">Send</button>
+        <button type="submit">Werk bij</button>
     </form>
     <form method="POST" action="/appointments/{{ $appointment->id }}">
         @method('DELETE')
         @csrf
-        <button type="submit">Delete</button>
+        <button type="submit">Verwijder</button>
     </form>
 @endsection

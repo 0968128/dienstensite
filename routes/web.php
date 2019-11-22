@@ -28,6 +28,7 @@ Auth::routes();
 Route::group(['middleware' => ['moderator']], function() {
     Route::get('/users', 'UsersController@index')->name('moderator');
 });
+Route::get('/geentoegang', 'PagesController@geentoegang');
 
 // Met betrekking op gebruikers
 Route::get('/users/{user}/edit', 'UsersController@edit');

@@ -120,15 +120,6 @@ class AppointmentsController extends Controller
         }
     }
 
-    public function confirm(Appointment $appointment) {
-        if(auth()->id() == $appointment->dienstverlener_id) {
-            $appointment->update([
-                'confirmed' => request()->has('confirmed')
-            ]);
-            return redirect('/appointments');
-        }
-    }
-
     /**
      * Remove the specified resource from storage.
      *

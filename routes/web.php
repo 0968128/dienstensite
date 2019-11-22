@@ -21,12 +21,7 @@ Route::get('/profile', 'PagesController@profile');
 
 // Routes met de afsprakencontroller
 Route::resource('/appointments', 'AppointmentsController');
-Route::patch('/confirm', 'AppointmentsController@confirm');
-
-// Routes met de timeslotscontroller
-Route::get('/timeslots', 'TimeslotsController@index');
-Route::get('/timeslots/create', 'TimeslotsController@create');
-Route::post('/timeslots/store', 'TimeslotsController@store');
+Route::patch('/appointments/{appointment}', 'AppointmentsController@confirm');
 
 // Routes met betrekking tot authorisatie en authenticatie
 Auth::routes();
@@ -35,8 +30,6 @@ Route::group(['middleware' => ['moderator']], function() {
 });
 
 // Met betrekking op gebruikers
-Route::get('/users', 'UsersController@index');
-Route::get('/users/{user}', 'UsersController@show');
 Route::get('/users/{user}/edit', 'UsersController@edit');
 Route::patch('/users/{user}', 'UsersController@update');
 Route::delete('/users/{user}', 'UsersController@destroy');

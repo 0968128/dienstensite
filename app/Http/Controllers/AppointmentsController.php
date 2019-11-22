@@ -19,7 +19,7 @@ class AppointmentsController extends Controller
     
     public function index(Request $request)
     {
-        // Zoeken
+        // Zoeken en filteren
         $searchbar = $request->get('searchbar');
         $filter = $request->get('filter');
         $appointments = Appointment::where(
@@ -118,6 +118,13 @@ class AppointmentsController extends Controller
         } else {
             return redirect('/appointments');
         }
+    }
+
+    public function confirm(Appointment $appointment) {
+        $appointment->update([
+            'confirmed' => request()->has('confirmed')
+        ]);
+        return redirect('/appointments');
     }
 
     /**

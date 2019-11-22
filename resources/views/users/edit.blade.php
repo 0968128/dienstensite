@@ -15,7 +15,7 @@
         </div>
         <button type="submit">Send</button>
     </form>
-    <form method="post" action="/users">
+    <form method="POST" action="/users/{{ $user->id }}">
         @method('DELETE')
         @csrf
         <button type="submit">Delete</button>

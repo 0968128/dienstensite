@@ -13,7 +13,7 @@
                 Email: <input type="email" name="email" value="{{ $user->email }}" required></textarea>
             </label><br>
         </div>
-        <button type="submit">Send</button>
+        <button type="submit">Confirm</button>
     </form>
     <form method="POST" action="/users/{{ $user->id }}">
         @method('DELETE')

@@ -46,7 +46,8 @@ class AppointmentsController extends Controller
      */
     public function create(User $user)
     {
-        return view('appointments.create', compact('user'));
+        $users = User::all();
+        return view('appointments.create', compact('users'));
     }
 
     /**

@@ -49,7 +49,6 @@
                     You are logged in!
                     <br><a href="/users/{{ Auth::user()->id }}/edit">Bewerk uzelf</a>
                     <br><a href="/appointments">Mijn afspraken</a>
-                    <br><a href="/timeslots">Mijn open timeslots</a>
                 </div>
             </div>
         </div>

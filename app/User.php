@@ -41,10 +41,6 @@ class User extends Authenticatable
         return $this->hasMany(Appointment::class);
     }
 
-    public function timeslots() {
-        return $this->hasMany(Timeslot::class);
-    }
-
     public function roles() {
         return $this->belongsToMany('App\Role');
     }

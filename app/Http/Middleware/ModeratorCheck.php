@@ -15,7 +15,7 @@ class ModeratorCheck {
     public function handle($request, Closure $next) {
         $userRoles = Auth::user()->roles->pluck('name');
         if(!$userRoles->contains('moderator')) {
-            return redirect('/');
+            return redirect('/geentoegang');
         }
         return $next($request);
     }

@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Appointment;
 
 class UsersController extends Controller
 {
     public function index() {
         $users = User::with('roles')->get();
         return view('users', compact('users'));
+    }
+
+    public function showAllAppointments() {
+        $appointments = Appointment::with('klant_id', 'dienstverlener_id')->get();
+        return view('allappointments', compact('appointments'));
     }
 
     public function show(User $user)

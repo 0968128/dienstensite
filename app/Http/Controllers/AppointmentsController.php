@@ -22,12 +22,10 @@ class AppointmentsController extends Controller
         // Zoeken en filteren
         $searchbar = $request->get('searchbar');
         $filter = $request->get('filter');
-        $appointments = Appointment::where(
-            'name', 'LIKE', "%{$searchbar}%")->where(
-            'klant_id', auth()->id())->orWhere(
-            'dienstverlener_id', auth()->id()
-        )->get();
 
+        if($filter == 1)
+        $appointments = Appointment::where(
+            'name', 'LIKE', "%{$searchbar}%")->get();
         if($filter == 2)
         $appointments = Appointment::where(
             'name', 'LIKE', "%{$searchbar}%")->where(

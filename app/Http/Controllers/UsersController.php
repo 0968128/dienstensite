@@ -9,8 +9,10 @@ use App\Appointment;
 class UsersController extends Controller
 {
     public function index() {
-        $users = User::with('roles')->get();
-        return view('users', compact('users'));
+        $user = \App\User::first();
+        $users = \App\User::all();
+        $roles = \App\Role::all();
+        return view('users', compact(['user', 'users']));
     }
 
     public function show(User $user)

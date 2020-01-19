@@ -120,7 +120,6 @@ class AppointmentsController extends Controller
 
     public function showAllAppointments() {
         $appointments = Appointment::all();
-        dd($appointments->toArray());
         return view('appointments.allappointments', compact('appointments'));
     }
 

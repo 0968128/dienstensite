@@ -27,6 +27,7 @@ Route::patch('/appointment/{appointment}', 'AppointmentsController@confirm');
 Auth::routes();
 Route::group(['middleware' => ['moderator']], function() {
     Route::get('/users', 'UsersController@index')->name('moderator');
+    Route::get('/allappointments', 'AppointmentsController@showAllAppointments');
 });
 Route::get('/geentoegang', 'PagesController@geentoegang');
 

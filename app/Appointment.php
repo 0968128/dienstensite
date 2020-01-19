@@ -7,10 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model {
     protected $table = 'appointments';
     protected $guarded = [];
-    public function klant_id() {
-        return $this->belongsTo(User::class);
-    }
-    public function dienstverlener_id() {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 }

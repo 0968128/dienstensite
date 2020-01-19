@@ -13,11 +13,6 @@ class UsersController extends Controller
         return view('users', compact('users'));
     }
 
-    public function showAllAppointments() {
-        $appointments = Appointment::with('klant_id', 'dienstverlener_id')->get();
-        return view('allappointments', compact('appointments'));
-    }
-
     public function show(User $user)
     {
         if(auth()->id() == $user->id)

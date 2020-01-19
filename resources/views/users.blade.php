@@ -5,7 +5,7 @@
     <p>
         <ul>
             @foreach($users as $user)
-                <div>{{ $user->name }}</div>
+                <div>{{ $user->name }} {{ $user->roles }} </div>
             @endforeach
         </ul>
     </p>

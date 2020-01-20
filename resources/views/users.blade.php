@@ -5,7 +5,9 @@
     <p>
         <ul>
             @foreach($users as $user)
-                <div>{{ $user->name }} {{ $user->roles }} </div>
+                <div>
+                    {{ $user->name }}: {{ $user->roles[0]->name }}
+                </div>
             @endforeach
         </ul>
     </p>

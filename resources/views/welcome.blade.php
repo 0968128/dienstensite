@@ -34,10 +34,8 @@
                     <a href="/about">Over ons</a>
                     <a href="/contact">Contact</a>
                     @auth
-                        <a href="/appointments">Afsprakenoverzicht</a>
+                        <a href="/appointments">Mijn afspraken</a>
                         <a href="/appointments/create">Afspraak maken</a>
-                        <a href="/users">Gebruikers</a>
-                        <a href="/allappointments">Alle afspraken</a>
                     @endauth
                 @endif
                 </div>

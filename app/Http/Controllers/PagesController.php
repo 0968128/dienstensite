@@ -14,7 +14,12 @@ class PagesController extends Controller
     }
 
     public function profile(User $user) {
-        return view ('profile', compact('user'));
+        if(auth()->user()) {
+            return view ('profile', compact('user'));
+        } else {
+            return back();
+        }
+        
     }
 
     public function contact() {

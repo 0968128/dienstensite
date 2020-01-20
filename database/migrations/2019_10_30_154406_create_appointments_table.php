@@ -17,14 +17,14 @@ class CreateAppointmentsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('descr');
-            $table->unsignedBigInteger('klant_id');
+            $table->unsignedBigInteger('user');
             $table->unsignedBigInteger('dienstverlener_id');
             $table->boolean('confirmed')->default(false);
             $table->timestamps();
 
             // Foreign keys
-            $table->foreign('klant_id')->references('id')->on('users');
-            //$table->foreign('dienstverlener_id')->references('user_id')->on('timeslots');
+            $table->foreign('user')->references('id')->on('users');
+            $table->foreign('dienstverlener_id')->references('id')->on('users');
         });
     }
 

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;//::with('id')->get();
+use App\User;
+use App\Appointment;
 
 class UsersController extends Controller
 {

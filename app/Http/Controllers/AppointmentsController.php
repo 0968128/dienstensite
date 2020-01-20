@@ -22,21 +22,17 @@ class AppointmentsController extends Controller
         // Zoeken en filteren
         $searchbar = $request->get('searchbar');
         $filter = $request->get('filter');
+        if(!$filter)
+        $appointments = Appointment::where('user', auth()->id())->orWhere('dienstverlener_id', auth()->id())->get();
+        elseif($filter == 2)
         $appointments = Appointment::where(
             'name', 'LIKE', "%{$searchbar}%")->where(
-            'klant_id', auth()->id())->orWhere(
-            'dienstverlener_id', auth()->id()
-        )->get();
-
-        if($filter == 2)
-        $appointments = Appointment::where(
-            'name', 'LIKE', "%{$searchbar}%")->where(
-            'klant_id', auth()->id())->get();
+            'user', auth()->id())->get();
         elseif($filter == 3)
         $appointments = Appointment::where(
             'name', 'LIKE', "%{$searchbar}%")->where(
             'dienstverlener_id', auth()->id())->get();
-        return view('appointments.index', compact('appointments'));
+        return view('appointments.index', compact(['appointments', 'filter', 'searchbar']));
     }
 
     /**
@@ -46,7 +42,8 @@ class AppointmentsController extends Controller
      */
     public function create(User $user)
     {
-        return view('appointments.create', compact('user'));
+        $users = User::all();
+        return view('appointments.create', compact('users'));
     }
 
     /**
@@ -60,9 +57,10 @@ class AppointmentsController extends Controller
         $attributes = request()->validate([
             'name' => ['required', 'min:5'],
             'descr' => ['required', 'min:20'],
-            'confirmed' => []
+            'confirmed' => [],
+            'dienstverlener_id' => ['required']
         ]);
-        Appointment::create($attributes + ['klant_id' => auth()->id(), 'dienstverlener_id' => auth()->id() + 1]);
+        Appointment::create($attributes + ['user' => auth()->id()]);
         return redirect('/appointments');
     }
 
@@ -74,7 +72,7 @@ class AppointmentsController extends Controller
      */
     public function show(Appointment $appointment)
     {
-        if(auth()->id() == $appointment->klant_id || auth()->id() == $appointment->dienstverlener_id)
+        if(auth()->id() == $appointment->user || auth()->id() == $appointment->dienstverlener_id)
             return view("appointments.show", compact('appointment'));
         else return redirect('/geentoegang');
     }
@@ -87,7 +85,7 @@ class AppointmentsController extends Controller
      */
     public function edit(Appointment $appointment)
     {
-        if(auth()->id() == $appointment->klant_id)
+        if(auth()->id() == $appointment->user)
             return view('appointments.edit', compact('appointment'));
         else return redirect('/geentoegang');
     }
@@ -101,7 +99,7 @@ class AppointmentsController extends Controller
      */
     public function update(Appointment $appointment)
     {
-        if(auth()->id() == $appointment->klant_id) {
+        if(auth()->id() == $appointment->user) {
             $appointment->update(request(['name', 'descr']));
             return view("appointments.show", compact('appointment'));
         } else {
@@ -120,6 +118,11 @@ class AppointmentsController extends Controller
         }
     }
 
+    public function showAllAppointments() {
+        $appointments = Appointment::all();
+        return view('appointments.allappointments', compact('appointments'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -128,7 +131,7 @@ class AppointmentsController extends Controller
      */
     public function destroy(Appointment $appointment)
     {
-        if(auth()->id() == $appointment->klant_id) {
+        if(auth()->id() == $appointment->user) {
             $appointment->delete();
         }
         return redirect('/appointments');

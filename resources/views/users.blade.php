@@ -6,7 +6,7 @@
         <ul>
             @foreach($users as $user)
                 <div>
-                    {{ $user->name }}: {{ $user->roles[0]->name }}
+                    {{ $user->name }} is zowel {{ $user->roles[0]->name }} als {{ $user->roles[1]->name }}
                 </div>
             @endforeach
         </ul>

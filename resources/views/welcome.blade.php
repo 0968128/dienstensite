@@ -35,7 +35,9 @@
                     <a href="/contact">Contact</a>
                     @auth
                         <a href="/appointments">Mijn afspraken</a>
-                        <a href="/appointments/create">Afspraak maken</a>
+                        <a href="/appointments/create">Afspraak maken</a><br><br>
+                        <h3>Voor moderators:</h3>
+                        <a href="/users">Gebruikers en hun rollen</a>
                     @endauth
                 @endif
                 </div>

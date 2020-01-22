@@ -19,19 +19,17 @@ class AppointmentsController extends Controller
     
     public function index(Request $request)
     {
-        // Zoeken en filteren
+        // Zoeken en filteren in variabelen
         $searchbar = $request->get('searchbar');
         $filter = $request->get('filter');
+
+        // Logica
         if(!$filter)
-        $appointments = Appointment::where('user', auth()->id())->orWhere('dienstverlener_id', auth()->id())->get();
+            $appointments = Appointment::where('user', auth()->id())->orWhere('dienstverlener_id', auth()->id())->get();
         elseif($filter == 2)
-        $appointments = Appointment::where(
-            'name', 'LIKE', "%{$searchbar}%")->where(
-            'user', auth()->id())->get();
+            $appointments = Appointment::where('name', 'LIKE', "%{$searchbar}%")->where('user', auth()->id())->get();
         elseif($filter == 3)
-        $appointments = Appointment::where(
-            'name', 'LIKE', "%{$searchbar}%")->where(
-            'dienstverlener_id', auth()->id())->get();
+            $appointments = Appointment::where('name', 'LIKE', "%{$searchbar}%")->where('dienstverlener_id', auth()->id())->get();
         return view('appointments.index', compact(['appointments', 'filter', 'searchbar']));
     }
 
@@ -116,11 +114,6 @@ class AppointmentsController extends Controller
         } else {
             return redirect('/appointments');
         }
-    }
-
-    public function showAllAppointments() {
-        $appointments = Appointment::all();
-        return view('appointments.allappointments', compact('appointments'));
     }
 
     /**

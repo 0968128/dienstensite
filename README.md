@@ -6,6 +6,7 @@ lijst filteren op alleen afspraken waar jij de dienst verleent of
 juist andersom. Je kunt zoeken naar afspraken op een specifiek
 trefwoord/specifieke trefwoorden. Filteren en zoeken kan ook
 tegelijkertijd.
+
 Je hebt als gebruiker een gebruikersprofiel. Dat profiel kun je
 zelf aanpassen, voor als je bijvoorbeeld een andere gebruikersnaam
 wil. Je kunt jezelf ook weer verwijderen, in lijn met het recht

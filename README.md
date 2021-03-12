@@ -13,5 +13,5 @@ wil. Je kunt jezelf ook weer verwijderen, in lijn met het recht
 op vergetelheid.
 #
 Dit project is gemaakt in Laravel, een bekend framework in PHP dat
-het MVC (Model, View en Controller als taken van code in ge-
-scheiden bestanden) principe hanteert.
+het MVC (Model, View en Controller als taken van code in gescheiden
+bestanden) principe hanteert.
